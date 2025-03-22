@@ -29,3 +29,15 @@ https://primevue.org/icons/
 https://primevue.org/tailwind/
 
 `npm i tailwindcss-primeui`
+
+## Server
+
+https://techdocs.akamai.com/cloud-computing/docs/set-up-and-secure-a-compute-instance
+
+https://www.linode.com/docs/guides/installing-and-using-docker-on-ubuntu-and-debian/
+
+## Docker
+
+docker buildx build -t dmt-vnetsize-nginx . -f ./docker/nginx/Dockerfile
+
+docker run -p 80:80 -it dmt-vnetsize-nginx
