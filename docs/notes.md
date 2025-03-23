@@ -36,9 +36,13 @@ https://techdocs.akamai.com/cloud-computing/docs/set-up-and-secure-a-compute-ins
 
 https://www.linode.com/docs/guides/installing-and-using-docker-on-ubuntu-and-debian/
 
+docker stop vnetsize-nginx
+
+docker container rm vnetsize-nginx
+
 docker pull ghcr.io/davidthuman/vnetsize-nginx:latest
 
-docker container run --name vnetsize-nginx -p 80:80 ghcr.io/davidthuman/vnetsize-nginx
+docker container run --name vnetsize-nginx -p 80:80 -d ghcr.io/davidthuman/vnetsize-nginx:latest
 
 ## Docker
 

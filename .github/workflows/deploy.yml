@@ -26,7 +26,10 @@ jobs:
       
       - name: Pull and Run Docker
         run: |
-          ssh -i ~/.ssh/private.key $SSH_USERNAME@$SSH_HOST "ls -la";
+          ssh -i ~/.ssh/private.key $SSH_USERNAME@$SSH_HOST "docker stop vnetsize-nginx";
+          ssh -i ~/.ssh/private.key $SSH_USERNAME@$SSH_HOST "docker container rm vnetsize-nginx";
+          ssh -i ~/.ssh/private.key $SSH_USERNAME@$SSH_HOST "docker pull ghcr.io/davidthuman/vnetsize-nginx:latest";
+          ssh -i ~/.ssh/private.key $SSH_USERNAME@$SSH_HOST "docker container run --name vnetsize-nginx -p 80:80 -d ghcr.io/davidthuman/vnetsize-nginx:latest";
         env:
           SSH_USERNAME: ${{ vars.SSH_USERNAME }}
           SSH_HOST: ${{ vars.SSH_IP_ADDRESS }}
