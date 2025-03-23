@@ -36,6 +36,10 @@ https://techdocs.akamai.com/cloud-computing/docs/set-up-and-secure-a-compute-ins
 
 https://www.linode.com/docs/guides/installing-and-using-docker-on-ubuntu-and-debian/
 
+docker pull ghcr.io/davidthuman/vnetsize-nginx:latest
+
+docker container run --name vnetsize-nginx -p 80:80 ghcr.io/davidthuman/vnetsize-nginx
+
 ## Docker
 
 docker buildx build -t dmt-vnetsize-nginx . -f ./docker/nginx/Dockerfile

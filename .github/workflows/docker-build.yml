@@ -4,6 +4,10 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'docker/**'
+      - 'nginx/**'
+      - 'frontend/**'
 
 env:
   CONTAINER_REGISTRY: ghcr.io

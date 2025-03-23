@@ -1,0 +1,32 @@
+name: deploy
+
+on: workflow_dispatch
+
+jobs:
+
+  deploy:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Pass
+        run: | 
+          echo "Pass"
+
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh/;
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/private.key;
+          sudo chmod 600 ~/.ssh/private.key;
+          ssh-keyscan "$SSH_HOST" > ~/.ssh/known_hosts;
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          SSH_HOST: ${{ vars.SSH_IP_ADDRESS }}
+      
+      - name: Pull and Run Docker
+        run: |
+          ssh -i ~/.ssh/private.key $SSH_USERNAME@$SSH_HOST "ls -la";
+        env:
+          SSH_USERNAME: ${{ vars.SSH_USERNAME }}
+          SSH_HOST: ${{ vars.SSH_IP_ADDRESS }}
