@@ -2,7 +2,7 @@
 
 import { ref, computed, reactive } from 'vue';
 
-import { parseIpV4Address } from './../assets/js/ip'
+import { parseIpV4Address } from '@/assets/js/ip'
 
 const ipAddress = reactive({
   value: null,
@@ -34,7 +34,7 @@ const convertIpAddress = () => {
 
 <template>
 
-  <Panel class="w-96" toggleable>
+  <Panel class="md:w-96" toggleable>
     <template #header>
       <div class="text-xl font-medium">Convert IP Address</div>
     </template>

@@ -1,4 +1,9 @@
 
+/**
+ * Returns the decimal number of an IP address
+ * @param {string} ipAddress IP address in dotted-decimal format
+ * @returns {number} IP address in decimal format
+ */
 export function parseIpV4Address(ipAddress) {
 
   let number = 0;
@@ -19,6 +24,11 @@ export function parseIpV4Address(ipAddress) {
   return number;
 }
 
+/**
+ * Returns an IP address in dotted-decimal format
+ * @param {number} decimal IP address in decimal format
+ * @returns {string} IP address in dotted-decimal format
+ */
 export function decimalToDotted(decimal) {
 
   let binary = Number(decimal).toString(2);
@@ -46,6 +56,12 @@ export function decimalToDotted(decimal) {
   return ipAddress;
 }
 
+/**
+ * 
+ * @param {string} ipAddress IP address in dotted-decimal format
+ * @param {string} cidr Slash '/' and decimal number 
+ * @returns 
+ */
 export function cidrToRange(ipAddress, cidr) {
 
   const number = parseIpV4Address(ipAddress);
@@ -58,6 +74,12 @@ export function cidrToRange(ipAddress, cidr) {
 
 }
 
+/**
+ * Returns a list of CIDRs that cover the given IP range
+ * @param {string} start IP address in dotted-decimal format
+ * @param {string} end IP address in dotted-decimal format
+ * @returns {Array<string>} List of CIDRs
+ */
 export function rangeToCidrs(start, end) {
 
   const startDecimal = parseIpV4Address(start);
@@ -84,5 +106,27 @@ export function rangeToCidrs(start, end) {
   }
 
   return cidrs;
+
+}
+
+export function countToMasks(count) {
+
+  const masks = [];
+
+  let remainder = count;
+
+  while (remainder != 0) {
+
+    const exponent = Math.floor(Math.log2(remainder));
+    const cidr = 32 - exponent;
+
+    const added = Math.pow(2, exponent);
+
+    masks.push(`/${cidr}`);
+
+    remainder -= added;
+  }
+
+  return masks;
 
 }

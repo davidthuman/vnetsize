@@ -2,7 +2,7 @@
 
 import { ref, computed, reactive } from 'vue';
 
-import { cidrToRange } from './../assets/js/ip';
+import { cidrToRange } from '@/assets/js/ip';
 
 const ipAddressCidr = reactive({
   ipAddress: {
@@ -58,7 +58,7 @@ const calculateIpAddressRange = () => {
 
 <template>
 
-  <Panel class="w-96" toggleable>
+  <Panel class="md:w-96" toggleable>
     <template #header>
       <div class="text-xl font-medium">CIDR to Range</div>
     </template>
